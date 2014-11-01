@@ -1,0 +1,11 @@
+# pack-refs with: peeled 
+2ef7d1e4cfc27bc3e60961f9b3ff446b59d30933 refs/tags/v1.2.1
+0e6963e04d765304d07a8c9b68480dd0f013b2ab refs/tags/1.3
+2ef7d1e4cfc27bc3e60961f9b3ff446b59d30933 refs/tags/1.2.1-bower
+ac69a861ee8f39010b4037311f02bb6453ed4eac refs/tags/1.2.1
+41b271f3fc75b1004ef1bcae22b058e13a59c1ba refs/tags/1.2
+30b27596b2964fa810d5b314a7b7e77cdd6331c6 refs/tags/1.1
+b2a34fdcd3e9fd13d854a5a9a76bcc59fc2b633b refs/tags/1.0
+858303df6a3eb43fb4a793a4d096e41c47294041 refs/tags/0.1
+e7c61ff4f453f7d0c572a262ec31e44b61630382 refs/remotes/origin/master
+e5deb196b643d619d141522ea4de018aa9746b3b refs/remotes/origin/bower

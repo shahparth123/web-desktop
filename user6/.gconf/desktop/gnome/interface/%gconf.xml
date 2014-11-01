@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="gtk-im-module" mtime="1410697447" type="string">
+		<stringvalue>gtk-im-context-simple</stringvalue>
+	</entry>
+</gconf>

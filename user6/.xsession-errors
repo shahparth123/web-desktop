@@ -1,0 +1,62 @@
+GNOME_KEYRING_SOCKET=/tmp/keyring-nn2lcs/socket
+SSH_AUTH_SOCK=/tmp/keyring-nn2lcs/socket.ssh
+** Message: NumLock remembering disabled because hostname is set to "localhost"
+Failed to play sound: File or data not found
+** Message: adding killswitch idx 0 state KILLSWITCH_STATE_UNBLOCKED
+** Message: killswitch 0 is KILLSWITCH_STATE_UNBLOCKED
+** Message: killswitches state KILLSWITCH_STATE_UNBLOCKED
+
+(bluetooth-applet:3355): GLib-GObject-WARNING **: invalid cast from `GtkAction' to `GtkActionGroup'
+** Message: killswitch 0 is KILLSWITCH_STATE_UNBLOCKED
+** Message: killswitches state KILLSWITCH_STATE_UNBLOCKED
+
+(polkit-gnome-authentication-agent-1:3369): GLib-GObject-WARNING **: cannot register existing type `_PolkitError'
+
+(polkit-gnome-authentication-agent-1:3369): GLib-CRITICAL **: g_once_init_leave: assertion `initialization_value != 0' failed
+** Message: applet now removed from the notification area
+** Message: applet now embedded in the notification area
+Initializing nautilus-open-terminal extension
+Initializing nautilus-gdu extension
+** Message: NumLock remembering disabled because hostname is set to "localhost"
+** Message: NumLock remembering disabled because hostname is set to "localhost"
+** Message: NumLock remembering disabled because hostname is set to "localhost"
+Error: The name org.freedesktop.UPower was not provided by any .service files
+Error: The name org.freedesktop.UPower was not provided by any .service files
+Error: The name org.freedesktop.UPower was not provided by any .service files
+Error: The name org.freedesktop.UPower was not provided by any .service files
+Error: The name org.freedesktop.UPower was not provided by any .service files
+Error: The name org.freedesktop.UPower was not provided by any .service files
+Error: The name org.freedesktop.UPower was not provided by any .service files
+Error: The name org.freedesktop.UPower was not provided by any .service files
+Error: The name org.freedesktop.UPower was not provided by any .service files
+Error: The name org.freedesktop.UPower was not provided by any .service files
+Error: The name org.freedesktop.UPower was not provided by any .service files
+Error: The name org.freedesktop.UPower was not provided by any .service files
+Error: The name org.freedesktop.UPower was not provided by any .service files
+
+(gnome-power-manager:3354): GLib-GObject-CRITICAL **: g_object_unref: assertion `G_IS_OBJECT (object)' failed
+Shutting down nautilus-gdu extension
+Shutting down nautilus-open-terminal extension
+
+--- Hash table keys for warning below:
+--> inode/directory
+--> webuser
+--> l64770
+--> user6
+
+(nautilus:3328): Eel-WARNING **: "unique eel_ref_str" hash table still has 4 elements at quit time (keys above)
+
+(nautilus:3328): Eel-WARNING **: "nautilus-directory.c: directories" hash table still has 3 elements at quit time
+** Message: applet now removed from the notification area
+
+(polkit-gnome-authentication-agent-1:3369): polkit-gnome-1-WARNING **: Error enumerating temporary authorizations: Remote Exception invoking org.freedesktop.PolicyKit1.Authority.EnumerateTemporaryAuthorizations() on /org/freedesktop/PolicyKit1/Authority at name org.freedesktop.PolicyKit1: org.freedesktop.PolicyKit1.Error.Failed: Cannot determine session the caller is in
+gnome-settings-daemon: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
+gnome-screensaver: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
+bluetooth-applet: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
+nm-applet: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
+gnome-volume-control-applet: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
+polkit-gnome-authentication-agent-1: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
+gpk-update-icon: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
+gdu-notification-daemon: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
+abrt-applet: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
+evolution-alarm-notify: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.

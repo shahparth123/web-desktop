@@ -1,0 +1,772 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!--
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <title>India Post | Tools | Track Consignments</title>
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link href="Styles/general.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/nav_menu.css" rel="stylesheet" type="text/css" />
+    <!--[if lt IE 7]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.0(beta3)/IE7.js" type="text/javascript"></script>
+<![endif]-->
+    <script language="javascript">
+        /*
+
+        function ClearContent(v) {
+        //alert(v);
+        if (v == "pincode") {
+        var defaulttext = "Type Pincode or Post office Name";
+        if (document.getElementById('TxtPostOffice').value == defaulttext) {
+        document.getElementById('TxtPostOffice').value = '';
+        document.getElementById('TxtPostOffice').focus();
+        document.getElementById('TxtPostOffice').setAttribute('style', 'color:#000000;border-width:1px;border-style:Solid;height:20px;width:175px;');
+        }
+        }
+        if (v == "article") {
+        var defaulttext = "Enter Consignment Number";
+        if (document.getElementById('TxtArticleNumber').value == defaulttext) {
+        document.getElementById('TxtArticleNumber').value = '';
+        document.getElementById('TxtArticleNumber').focus();
+        document.getElementById('TxtArticleNumber').setAttribute('style', 'color:#000000;border-width:1px;border-style:Solid;height:20px;width:175px;');
+        }
+        }
+        if (v == "username") {
+        var defaulttext = "Enter the Username";
+        if (document.getElementById('TxtUserName').value == defaulttext) {
+        document.getElementById('TxtUserName').value = '';
+        document.getElementById('TxtUserName').focus();
+        document.getElementById('TxtUserName').setAttribute('style', 'color:#000000;border-width:1px;border-style:Solid;height:20px;width:175px;');
+        }
+        }
+        }
+
+
+        function isBlank(s) {
+        var len = s.length;
+        var i;
+        for (i = 0; i < len; ++i) {
+        if (s.charAt(i) != "")
+        return false;
+        }
+        return true;
+        }
+
+        function validatePostOffice() {
+        if (isBlank(document.getElementById('TxtPostOffice').value) == true) {
+        alert("Please enter the Pincode or Post Office name for search");
+        document.getElementById('TxtPostOffice').focus();
+        document.getElementById('TxtPostOffice').select();
+        return false;
+        }
+        if (document.getElementById('TxtPostOffice').value == "Type Pincode or Post office Name") {
+        alert("Please enter the Pincode or Post Office name for search");
+        //document.getElementById('TxtPostOffice').focus();
+        //document.getElementById('TxtPostOffice').select();
+        return false;
+        }
+        window.open("http://www.indiapost.gov.in/Pin/Pinsearch.aspx?Pin_On=" + document.getElementById('TxtPostOffice').value);
+        document.getElementById('TxtPostOffice').focus();
+        return false;
+        }
+
+        function ChangeCase(v1) {
+        //alert(v1);
+        if (v1 == "pincode") {
+        var defaulttext1 = "Type Pincode or Post office Name";
+        if (isBlank(document.getElementById('TxtPostOffice').value) == true) {
+        document.getElementById('TxtPostOffice').value = defaulttext1;
+        document.getElementById('TxtPostOffice').setAttribute('style', 'color:#666666;border-width:1px;border-style:Solid;height:20px;width:175px;');
+        //document.getElementById('TxtArticleNumber').select();
+        }
+        }
+        if (v1 == "article") {
+        var defaulttext1 = "Enter Consignment Number";
+        if (isBlank(document.getElementById('TxtArticleNumber').value) == true) {
+        document.getElementById('TxtArticleNumber').value = defaulttext1;
+        document.getElementById('TxtArticleNumber').setAttribute('style', 'color:#666666;border-width:1px;border-style:Solid;height:20px;width:175px;');
+        //document.getElementById('TxtArticleNumber').select();
+        }
+        }
+        if (v1 == "username") {
+        var defaulttext1 = "Enter the Username";
+        if (isBlank(document.getElementById('TxtUserName').value) == true) {
+        document.getElementById('TxtUserName').value = defaulttext1;
+        document.getElementById('TxtUserName').setAttribute('style', 'color:#666666;border-width:1px;border-style:Solid;height:20px;width:175px;');
+        //document.getElementById('TxtArticleNumber').select();
+        }
+        }
+        }
+
+        function chkNumeric(strString) {
+        //  check for valid numeric strings	
+        var strValidChars = "0123456789";
+        var strChar;
+        var blnResult = true;
+
+        //alert (strString.length);
+        if (strString.length != 18) {
+        return false;
+        }
+        //  test strString consists of valid characters listed above
+        for (i = 0; i < strString.length && blnResult == true; i++) {
+        strChar = strString.charAt(i);
+        if (strValidChars.indexOf(strChar) == -1) {
+        blnResult = false;
+        }
+        }
+        return blnResult;
+        }
+
+        function validateArticleNumber() {
+        if (isBlank(document.getElementById('TxtArticleNumber').value) == true) {
+        alert("Please enter the Article Number to be tracked");
+        document.getElementById('TxtArticleNumber').focus();
+        document.getElementById('TxtArticleNumber').select();
+        return false;
+        }
+        if (document.getElementById('TxtArticleNumber').value == "Enter Consignment Number") {
+        alert("Please enter the Article Number to be tracked");
+        //document.getElementById('TxtArticleNumber').focus();
+        //document.getElementById('TxtArticleNumber').select();
+        return false;
+        }
+        var Tracking_Number = document.getElementById('TxtArticleNumber').value;
+        //alert(Tracking_Number);
+        Tracking_Number = Tracking_Number.toUpperCase();
+        //alert(Tracking_Number);
+        if (Tracking_Number.length == 18) {
+        //alert("Valid MO Number");
+        if (chkNumeric(Tracking_Number) == false) {
+        alert("Please check - eMO No. is not valid");
+        document.getElementById('TxtArticleNumber').focus();
+        document.getElementById('TxtArticleNumber').select();
+        return false;
+        }
+        else {
+        window.open("http://services.ptcmysore.gov.in/emo/track.aspx?eMONO=" + Tracking_Number);
+        document.getElementById('TxtArticleNumber').focus();
+        return false;
+        }
+        }
+
+        else if (Tracking_Number.length == 13) {
+        //alert(Tracking_Number.substring(0, 1));
+        if (Tracking_Number.substring(0, 1) != 'R' && Tracking_Number.substring(0, 1) != 'E' && Tracking_Number.substring(0, 1) != 'X') 
+        {
+        alert('Sorry, your tracking number is not valid. Please ensure your tracking number is accurately typed In the format either RX123456789IN or EX123456789IN ');
+        document.getElementById('TxtArticleNumber').focus();
+        document.getElementById('TxtArticleNumber').select();
+        return false;
+        }
+        if (Tracking_Number.substring(0, 1) == 'R') {
+        var array = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+        var checkflag = false;
+        for (i = 0; i < array.length; i++) {
+        if (Tracking_Number.substring(1, 2) == array[i])
+        checkflag = true;
+        }
+        if (checkflag == false) {
+        alert('Sorry, your tracking number is not valid. Please ensure your tracking number is accurately typed In the format RX123456789IN ');
+        document.getElementById('TxtArticleNumber').focus();
+        document.getElementById('TxtArticleNumber').select();
+        return false;
+        }
+        if (Tracking_Number.substring(11, 13) != 'IN') 
+        {
+        alert('Sorry, your tracking number is not valid. Please ensure your tracking number is accurately typed In the format RX123456789IN ');
+        document.getElementById('TxtArticleNumber').focus();
+        document.getElementById('TxtArticleNumber').select();
+        return false;
+        }
+        window.open("http://services.ptcmysore.gov.in/RNetTracking/Track.aspx?RNetNo=" + Tracking_Number);
+        document.getElementById('TxtArticleNumber').focus();
+        return false;
+        }
+        if (Tracking_Number.substring(0, 1) == 'E') {
+        var array = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+        var checkflag = false;
+        for (i = 0; i < array.length; i++) {
+        if (Tracking_Number.substring(1, 2) == array[i])
+        checkflag = true;
+        }
+        if (checkflag == false) {
+        alert('Sorry, your tracking number is not valid. Please ensure your tracking number is accurately typed In the format EX123456789IN ');
+        document.getElementById('TxtArticleNumber').focus();
+        document.getElementById('TxtArticleNumber').select();
+        return false;
+        }
+                     
+        //                     if (Tracking_Number.substring(11, 13) != 'IN') {
+        //                         alert('Sorry, your tracking number is not valid. Please ensure your tracking number is accurately typed In the format EX123456789IN ');
+        //                         document.getElementById('TxtArticleNumber').focus();
+        //                         document.getElementById('TxtArticleNumber').select();
+        //                         return false;
+        //                     }
+                     
+        window.open("http://services.ptcmysore.gov.in/Speednettracking/Track.aspx?articlenumber=" + Tracking_Number);
+        document.getElementById('TxtArticleNumber').focus();
+        return false;
+        }
+        }
+        else {
+        alert('Sorry, your tracking number is not valid.');
+        document.getElementById('TxtArticleNumber').focus();
+        document.getElementById('TxtArticleNumber').select();
+        return false;
+        }
+
+        }
+
+        function validateLogin() {
+        if (isBlank(document.getElementById('TxtUserName').value) == true) {
+        alert("Please enter the Username");
+        document.getElementById('TxtUserName').focus();
+        document.getElementById('TxtUserName').select();
+        return false;
+        }
+        if (document.getElementById('TxtUserName').value == "Enter the Username") {
+        alert("Please enter the Username");
+        return false;
+        }
+        if (isBlank(document.getElementById('TxtPassword').value) == true) {
+        alert("Please enter the Password");
+        document.getElementById('TxtPassword').focus();
+        document.getElementById('TxtPassword').select();
+        return false;
+        }
+        }
+        */
+     
+    </script>
+    <script type="text/javascript" src="scripts/general.js"></script>
+</head>
+<body>
+    <form method="post" action="Tracking.aspx" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTgyNzY4NTc4OQ9kFgICAQ9kFgICBQ9kFgJmD2QWAgIBDw9kFgQeB29uZm9jdXMFGENsZWFyQ29udGVudCgnYXJ0aWNsZScpOx4Gb25ibHVyBRZDaGFuZ2VDYXNlKCdhcnRpY2xlJyk7ZGTzdh405oCDoxFiQRU3ZDRT7y5PCX2IaoRBGnSaRx7iRQ==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=xuRz1fu2ZAxK1gKvelytLa_h5-cEzf_prQ5pPNxtyV2NLJFlchH02Doo6bKFzqS5XpA3bpKNydYyCObBHs9zX-7IDoHGH9vArRZCG7KAlk41&amp;t=635418424260000000" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=nS8J23l4t_CJK_-4VuH9ZgyGQADtY9kMhykjJgoWiJv8pdxhq40VaVyv7ZMNsNk1JPrmHdSaFtAOddRyyHTQnMgrEIp1yxK-1AAgy8xTOKRfpD4ecRtJ1iIZK9Du6e4m71BtI3_F3xndk_uHvbTjpxHosfVtHxZIsVH3XFE01A8OMees8t42SSEyt3lr1QVo0&amp;t=7e632e9f" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<script src="/ScriptResource.axd?d=vDfteBklJ-YV9ceh1XsdPVW_Z3PKV935bP2sLK0E32RnG6UtOz4VRkz4Z3uH-bnxyuixcj0Nq53oq7CLEgXhxBMUhbsQnbaBoD-aGJBoh_7xzgkPonLt4WfklJTywVJC9cwhoykRsRqzmRl6irpIXQO60THX00ck6ehqDf_eWtCqSJzhyiuHcoXzJiIev1Sn0&amp;t=7e632e9f" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="414E4794" />
+</div>
+    <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('script1', 'form1', ['tupdatePanel','updatePanel'], [], ['btnGo','btnGo'], 90, '');
+//]]>
+</script>
+
+    <div id='wrapper'>
+        <div>
+<div class='header'>
+<div style="float:left;width:349px;"><img src="images/logo.jpg" /></div>
+<div style="float:right;width:250px; padding-top:94px;"><a href="Hindi/Index_Hindi.aspx"> <img src="images/hindi.jpg" style="vertical-align:bottom;"/></a>|&nbsp;<a href="index.aspx">English</a></div>
+<!--<div style="float:right;width:250px; padding-top:94px;"><a href="http://translate.google.com/translate?hl=en&sl=en&tl=hi&u=http%3A%2F%2Fwww.indiapost.gov.in&sandbox=1"> <img src="images/hindi.jpg" style="vertical-align:bottom;"/></a>|&nbsp;<a href="index.aspx">English</a></div>-->
+</div>
+<div class='clr'></div>
+
+<div  id="multi-level">
+
+
+	<ul class="menu">
+		<li class="top p1"><a href="Index.aspx" class="top_link" id="home"><span>Home</span></a></li>
+	    <li class="top p2"><a href="About_Us_Master.aspx" class="top_link" id="about"><span>About Us</span></a>
+    		<ul class="sub">
+	   			<li><a href="About_Us.aspx">Vision & Mission</a></li>			
+				<li><a href="Citizen_Charter.aspx" >Citizen Charter</a></li>
+				<li><a href="Organization.aspx">Organization</a></li>
+                <li><a href="Our_Network.aspx">Post Office Network</a></li>
+                <li><a href="Modernisation_Introduction.aspx">IT Project 2012</a></li>
+                <!--
+				<li><a href="Business_Objectives.aspx">Business Objectives</a></li>
+				<li><a href="Holidays.aspx">Holidays</a></li>
+                -->
+                
+				<li><a href="#">Resources and Downloads</a>
+            		<ul class="fly">
+                        <li><a href ="Pdf/Strategic_Plan.pdf" target="_blank">Strategic Plan</a></li>
+            			<li><a href="Pdf/Draft_Outline_of_Corporate_Plan_for_India_Post.pdf" target="_blank">Draft Outline of Corporate Plan</a></li> 
+                         <li><a href ="Pdf/Book_of_Information_2011-2012.pdf" target="_blank">Book of Information 2011-2012</a></li>
+                        <li><a href ="Pdf/Book_of_Information_2010-2011.pdf" target="_blank">Book of Information 2010-2011</a></li>
+                        <li><a href ="Annual_Reports.aspx">Annual Reports</a></li>
+                        <li><a href ="RFD.aspx">Results Framework Document</a></li>
+                        <li><a href ="Pdf/CivilListason01062014.pdf" target="_blank">Civil List as on 01-06-2014</a></li>
+                        <li><a href="PropertyReturns.aspx">Annual Property Returns</a></li>
+                        <li><a href ="Pdf/CSS_List.pdf" target="_blank">CSS List</a></li>
+                        <li><a href ="Pdf/Stt_RD.pdf" target="_blank">Accounts</a></li>
+					</ul>
+                  </li>
+                <li><a href="#">Reforms-Success Stories</a>
+                    <ul class="fly">
+                         <li><a href ="Pdf/Public_Grievances.pdf" target="_blank">Public Grievances</a></li>
+                         <li><a href ="Pdf/Project_Arrow.pdf" target="_blank">Project Arrow</a></li>
+                    </ul>
+                </li>
+             </ul>
+          </li>
+    
+    
+	<li class="top p3"><a href="Mailing_Services.aspx" class="top_link" id="ms"><span>Mail Services</span></a>
+    	<ul class="sub">
+        	<li><a href="MailProducts.aspx">Mail Products</a></li>
+	    	<li><a href="Registration.aspx">Registration</a></li>
+			<li><a href="Parcel.aspx">Parcel</a></li>
+			<li><a href="Insurance.aspx">Insurance</a></li>
+			<li><a href="VPPost.aspx">Value Payable Post</a></li>
+            <li><a href="Pincode.aspx">Pincode</a></li>
+            <li><a href="#">International</a>
+                <ul class="fly">
+            			<li><a href="SAL.aspx" >Surface Air Lifted (SAL)</a></li>
+                        <li><a href="Customs_Information.aspx">Information on Customs matters</a></li>
+                        <li><a href="Pdf/WNX.pdf">WNX</a></li>
+                </ul>
+            </li>
+		</ul>
+      </li>
+    
+    
+	<li class="top p4"><a href="Premium_Products.aspx" class="top_link" id="pp"><span>Premium Products</span></a>
+    	<ul class="sub">
+	    	<li><a href="SpeedPost.aspx">Speed Post</a></li>
+			<li><a href="BusinessPost.aspx">Business Post</a></li>
+            <li><a href="ExpressParcel.aspx">Express Parcel</a></li>
+			<li><a href="MediaPost.aspx">Media Post</a></li>
+			<li><a href="GreetingPost.aspx">Greeting Post</a></li>
+			<li><a href="LogisticsPost.aspx">Logistics Post</a></li>
+			<!--
+            <li><a href="BillMailService.aspx">Bill Mail</a></li>
+			
+            <li><a href="Directmail.aspx">Direct Post</a></li>
+            <li><a href="RetailPost.aspx">Retail Post</a></li>
+            <li><a href="SAL.aspx">SAL</a></li>
+            <li><a href="ePayment.aspx">e-Payment</a></li>
+            <li><a href="#">Speed Post Passport</a></li>
+            -->
+    	</ul>
+     </li>
+        
+        
+	<li class="top p5"><a href="Financial_Services.aspx" class="top_link" id="fs"><span>Financial Services</span></a>
+    	<ul class="sub">
+	    	<li><a href="POSB.aspx">Post Office Savings Schemes</a></li>
+			<li><a href="http://www.postallifeinsurance.gov.in" target="_blank">Postal Life Insurance (PLI)</a></li>
+			<li><a href="Money_Remittance_Services.aspx">Money Remittance Service</a>
+            		<ul class="fly">
+            			<li><a href="MoneyOrder.aspx">Money Order (MO)</a></li>
+                        <li><a href="IMOS.aspx">Instant Money Order (iMO)</a></li>
+                        <li><a href="IMT.aspx">International Money Transfer (IMT)</a></li>
+                        <li><a href="MoneyGram_IMT.aspx">Money Gram-Money Transfer</a></li>
+                        <li><a href="http://cept.gov.in/eurogiro/" target="_blank">MO Videsh</a></li>
+                        <li><a href="ECS.aspx">Electronic Clearance Service (ECS)</a></li>
+                         <li><a href="ifs.aspx" target="_blank">IFS </a></li>
+                         <li><a href="MobileMoneyTransfer.aspx" >Mobile Money Transfer Service </a></li>
+                     </ul>
+             </li>
+             
+			<li><a href="MutualFunds.aspx">Mutual Funds</a></li>
+			<!--<li><a href="E_IMO.aspx">e-International Money Order(IMO)</a></li>-->
+			<li><a href="ForexService.aspx">Forex Services</a></li> 
+            <!--
+			<li><a href="GoldCoins.aspx">Sale of Gold Coins</a></li>
+            -->
+	  </ul>
+   </li>
+        
+        
+	<li class="top p6"><a href="Retail_Services.aspx" class="top_link" id="cf"><span>Retail Services</span></a>
+    	<ul class="sub" >
+    		<li><a href="BillMailService.aspx">Bill Mail</a></li>
+    		<li><a href="DirectPost.aspx">Direct Post</a></li>
+    		<li><a href="RetailPost.aspx">Retail Post</a></li>
+            <!--
+    		<li><a href="SAL.aspx">SAL</a></li>
+             -->
+    		<li><a href="ePayment.aspx">e-Payment</a></li>
+    	</ul>
+    </li>
+                
+    <li class="top p7"><a href="CustomerCare.aspx" class="top_link" id="ccf"><span>Customer Care</span></a>
+    	<ul class="sub">
+            <li><a href="PC_GuideLines.aspx">Guidelines on Complaints</a></li>
+        	<!--<li><a href="http://www.indiapost.gov.in/Ccc/PCData.aspx" >Complaint Registration</a></li>-->
+            <li><a href="http://ccc.cept.gov.in/ComplaintRegistration.aspx" >Complaint Registration</a></li>
+    		<!--<li><a href="http://www.indiapost.gov.in/Ccc/PCStatus.aspx" >Track your Complaints</a></li>-->
+            <!--<li><a href="http://ccc.cept.gov.in/ComplaintStatus.aspx" >Track your Complaints</a></li>-->
+
+            <!--
+    		<li><a href="Feedback.aspx">Feedback</a></li>
+            -->  
+    		<li><a href="Contact_Us.aspx">Contact Us</a></li>
+            <li><a href="http://www.pgportal.gov.in/" target="_blank">PG Portal-CPGRAMS</a></li>   
+            <li><a href="Pdf/India_Post-Project_Arrow-Audit_Report.pdf" target="_blank">Customers' Satisfaction Survey</a></li>   
+    	</ul>
+     </li>
+
+	<li class="top p8"><a target="_blank" href="http://postagestamps.gov.in/" class="top_link" id="philately"><span>Philately</span></a>
+        
+        <!--<ul class="sub">
+            <li><a href="Stamps.aspx">Stamps</a></li>
+            <li><a href="PhilatelyOffices.aspx">List of Philately Offices</a></li>
+            <li><a href="PhilatelyCalendar.aspx">Stamp issue calender 2014</a></li>
+            <li><a href="Fifaworldcup2014.aspx">2014 FIFA World Cup</a></li>
+            </ul>-->
+        
+    </li>
+
+
+	<li class="top p9"><a href="Tools.aspx" class="top_link" id="ts"><span>Tools</span></a>
+    	<ul class="sub"> 
+   			<li> <a href="Tracking.aspx">Track Consignments</a></li>
+    		<li> <a href="InterestCalculator.aspx">Interest Calculator</a></li>
+     		<li> <a href="http://www.indiapost.gov.in/Postage/PostageCalculator.html" >Postage Calculator </a></li>
+     		<li> <a href="SP_Rate_Calculator.aspx">Speed Post Rate Calculator </a></li>
+     		<li> <a href="http://www.indiapost.gov.in/PincodeSearch.aspx" >Search Pincode</a></li>
+        </ul>
+    </li>
+</ul>
+			
+
+</div>
+
+</div>
+        <div class='clr'>
+        </div>
+        <div class='clr'>
+        </div>
+        <div id="rows_container">
+            <ul id='aside'>
+                <li><a href="Tracking.aspx#Tracked">What can be Tracked</a></li>
+                <li><a href="Tracking.aspx#works">How it works</a></li>
+                <li><a href="Tracking.aspx#Formats">Tracking Number Formats</a></li>
+                <li><a href="Tracking.aspx#SMS">SMS status reporting for Speed Post &amp; eMO</a></li>
+            </ul>
+            <div class="cntr">
+                <div class="breadcrumb">
+                    <a href="Index.aspx">Home</a><a href="Tools.aspx">&#187; Tools</a>&#187; Track Consignments</div>
+                <h1>
+                    Track Consignments</h1>
+                <p>
+                    <b>Track All Mail Items</b> </br>
+                    <div id="updatePanel">
+	
+                            <table border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td colsapn="2">
+                                        <input name="TxtArticleNumber" type="text" value="Consignment Number" maxlength="35" id="TxtArticleNumber" tabindex="1" onfocus="ClearContent(&#39;article&#39;);" onblur="ChangeCase(&#39;article&#39;);" style="color:#666666;border-width:1px;border-style:Solid;height:20px;width:150px;" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="5">
+                                    </td>
+                                </tr>
+                                <tr style="background-color: #FFEFD5">
+                                    <td>
+                                        <h4>
+                                            Verification</h4>
+                                    </td>
+                                </tr>
+                                <tr style="background-color: #FFEFD5;">
+                                    <td align="center">
+                                        <img id="imgcap" src="captcha.aspx" style="background-color:White;height:32px;width:100px;" />
+                                    </td>
+                                </tr>
+                                <tr style="background-color: #FFEFD5">
+                                    <td align="Left">
+                                        <span id="Label2" style="font-size:9pt;vertical-align: text-top;">Please enter the text shown in the box below:</span>
+                                    </td>
+                                </tr>
+                                <tr style="background-color: #FFEFD5">
+                                    <td height="10" align="left" valign="middle" style="vertical-align: middle;" class="style1">
+                                        <input name="txtCaptcha" type="text" id="txtCaptcha" style="border-width:1px;border-style:Solid;height:20px;width:150px;" />&nbsp;&nbsp;
+                                        <input type="submit" name="btnGo" value="Go" id="btnGo" align="left" style="color:White;background-color:#990000;height:20px;width:18%;vertical-align: top; text-align: center;" />
+                                    </td>
+                                </tr>
+                            </table>
+                        
+</div>
+                    <p>
+                        <b>India Post Online Tracking facility</b></p>
+                    <p>
+                        India Post’s online tracking allows you to access tracking information and confirm
+                        the delivery of your item by using the tracking number assigned to you at the time
+                        of Booking. You can find the tracking number on the Postal receipt handed over to
+                        you at the Post office Counter at the time of booking.</p>
+                    <p>
+                        <b><a name="Tracked">What can be Tracked</b></a></p>
+                    <ul>
+                        <li>Speed post (Domestic EMS)</li>
+                        <li>International EMS</li>
+                        <li>Electronic Money Order (eMO)</li>
+                        <li>Registered Mail</li>
+                        <li>Express Parcel </li>
+                        <li>Electronic Value Payable Parcel (eVPP)</li>
+                    </ul>
+                    <br />
+                    <p>
+                        <b><a name="works">How it works</a></b></p>
+                    <p>
+                        The tracking system is updated periodically to provide you with the most current
+                        information available about the location and status of your item. You&#39;ll be
+                        able to find out the following:
+                        <ul>
+                            <li>When your item was booked</li>
+                            <li>When your item was dispatched and received at various locations during its Journey</li>
+                            <li>When your item was delivered, or:</li>
+                            <li>When a Delivery Intimation Notice was issued to notify the recipient that the item
+                                is available for delivery</li>
+                        </ul>
+                        <p>
+                            <b>How Can I Track?</b></p>
+                        <p>
+                            1. Enter the Postal Article Number In the Tracking Number(s) box,
+                            <br />
+                            2. Select the Go button to view your results.</p>
+                        <p>
+                            <b><a name="Formats">Tracking Number Formats</a></b><table border="1" bordercolordark="#000000"
+                                bordercolorlight="#000000" style="border: 1px solid #000000; border-collapse: collapse"
+                                width="70%">
+                                <tr>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        <b>Category</b>
+                                    </td>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        <b>Format</b>
+                                    </td>
+                                    <td align="left" style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        <b>No. of digits</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        Speed Post (EMS) Domestic
+                                    </td>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        EE123456789IN
+                                    </td>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        13
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        International EMS Artilces to be delivered in India
+                                    </td>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        EE123456789XX
+                                    </td>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        13
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        Electronic Money Order (eMO)
+                                    </td>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        000000000000000000
+                                    </td>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        18
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        Registered Mail
+                                    </td>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        RX123456789IN
+                                    </td>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        13
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        Express Parcel Post
+                                    </td>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        XX000000000XX
+                                    </td>
+                                    <td style="border: 1px solid #000000; border-collapse: collapse; height: 25px;">
+                                        13
+                                    </td>
+                                </tr>
+                            </table>
+                        </p>
+                        <p>
+                            <b>Common Concerns</b></p>
+                        <p>
+                            <b>What if my tracking information is unavailable?</b><br />
+                            If you receive a message telling you that your tracking information is unavailable,
+                            it doesn't mean that your item hasn't been mailed.</p>
+                        <ul>
+                            <li>There may be a delay between scanning events and the availability of tracking information
+                                related to those scanning events.</li>
+                            <li>Depending on how recently your item was mailed, tracking information may not be
+                                immediately available (this is most likely to occur in rural locations, or when
+                                information is provided by foreign postal administrations).</li>
+                        </ul>
+                        <p>
+                            <b><a name="SMS">SMS status reporting for Speed Post &amp; eMO</a></b><br>
+                            <table id="table6" border="0" width="100%">
+                                <tr>
+                                    <td colspan="3" height="50">
+                                        <p align="justify">
+                                            We are happy to launch SMS tracking facility as an initiative to&nbsp;provide better
+                                            service to our customers. Initially, the service is available for Speed Post and
+                                            eMO (electronic money order).&nbsp;</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <b>The steps involved:</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="25">
+                                        1)&nbsp;You need&nbsp;to send SMS to <b>55352</b>&nbsp;in the following format:
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="20" width="43">
+                                        &nbsp;
+                                    </td>
+                                    <td colspan="2" height="20" width="586">
+                                        <b>For Speed Post:</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="43">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </td>
+                                    <td width="117">
+                                        &nbsp;
+                                    </td>
+                                    <td width="470">
+                                        SP&lt;space&gt;Speed Post number<br />
+                                        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            OR</b><br />
+                                        EMS&lt;space&gt;Speed Post number
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="20" width="43">
+                                        &nbsp;
+                                    </td>
+                                    <td colspan="2" height="20" width="586">
+                                        <b>For eMO:</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="43">
+                                        &nbsp;
+                                    </td>
+                                    <td width="117">
+                                        &nbsp;
+                                    </td>
+                                    <td width="470">
+                                        MO&lt;space&gt;eMO PNR No<br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <b>&nbsp; OR</b><br />
+                                        EMO&lt;space&gt;eMO PNR No
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="30">
+                                        <p align="justify">
+                                            2) <b>&#39;IN&#39; at the end of Speed Post number need not be given. Eg. if the Speed
+                                                Post number is EE123456789in; you need to send the message as: SP EE123456789
+                                            </b>
+                                            <br />
+                                            The service is not case sensitive -&nbsp;you may use capitals or lower case or a
+                                            mix of both.&nbsp;&nbsp;
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40">
+                                        3) The data will be retained upto 3 months from the date of booking for the purpose
+                                        of SMS tracking.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="20">
+                                        4) The service is available across all service providers in the country. Rates charged
+                                        by the service provider are applicable.
+                                    </td>
+                                </tr>
+                            </table>
+                        </p>
+            </div>
+        </div>
+        <div class='clr'>
+        </div>
+        <div class='clr'>
+        </div>
+        <div id='footer'>
+
+<ul class='foot-menu'>
+
+<li><a href="Liability_Disclaimer.aspx">Disclaimer</a></li>
+<li><a href="SiteMap.aspx">Sitemap</a></li>
+<!--<li><a href="http://mail.indiapost.gov.in" target="_blank">e-Mail</a></li>-->
+<li><a href="https://webmail.indiapost.gov.in/" target="_blank">e-Mail</a></li>
+<li><a href="links.aspx">Related Links</a></li>
+<li><a href="http://www.india.gov.in" target="_blank">India Portal</a></li>
+<li><a href="Contact_Us.aspx">Contact Us</a></li>
+<li><a href="http://tenders.gov.in/department.asp?id=832" target="_blank">Tenders</a></li>
+<li><a href="RTI_Contents.aspx">RTI</a></li>
+<!--<li><a href="RFD.aspx">RFD</a></li>-->
+<li><a href="http://www.indiapost.gov.in/DOP">Employee Corner</a></li>
+<li><a href="Recruitment.aspx">Opportunities</a></li>
+<li><a href="Holidays2014.aspx">Holidays</a></li>
+<li><a href="Forms.aspx" >Forms</a></li>
+</ul>
+
+<hr  width="960px"  />
+
+
+This website belongs to Department of Posts, Ministry of Communications & Information Technology, Government of India.<br />
+Last Updated on 12th September 2014.
+</div>
+
+
+    </div>
+    </form>
+</body>
+</html>

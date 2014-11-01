@@ -1,0 +1,61 @@
+html, body, div, h1
+{
+margin: 0;
+padding: 0;
+border: 0;
+}
+body {
+font-family: Arial, "Trebuchet MS";
+font-size: 12px;
+color: #99A607;
+}
+a{
+font-weight: bold;
+letter-spacing: -1px;
+color: #99A607;
+text-decoration:none;
+}
+a:hover{
+color: #99A607;
+text-decoration:underline;
+}
+#container{
+width:80%;
+margin: auto;
+}
+#top{
+width:100%;
+margin-top: 25px; 
+height:60px; 
+border:1px solid #BBBBBB; 
+padding:10px;
+}
+#tutorialHead{
+width:100%;
+margin-top: 25px; 
+height:30px; 
+border:1px solid #BBBBBB; 
+padding:10px;
+}
+.tutorialTitle{
+width:800px;
+float:left;
+}
+.tutorialLink{float:right;}
+#wrapper{
+width:98%;
+margin-top: 25px;
+border:1px solid #BBBBBB; 
+padding:20px; 
+color:#000;
+}
+#wrapper .button{background: -moz-linear-gradient(center top , #EDEDED 5%, #DFDFDF 100%) repeat scroll 0 0 #EDEDED;
+    border: 1px solid #DCDCDC;border-radius: 6px 6px 6px 6px;box-shadow: 0 1px 0 0 #FFFFFF inset;
+    color: #777777;padding: 6px 9px; text-shadow: 1px 1px 0 #FFFFFF;margin-left: 10px;
+}
+
+#wrapper #question{font-weight:bold; font-size:14px;}
+#wrapper #pollBox{margin-left:20%;}
+#pollBox .option{margin-bottom:10px;}
+.no_click{background-color:#000;}
+#fotter{clear:both;text-align:right;font-size:10px;color: #222; border:1px solid #BBBBBB; padding:10px;width:100%;margin-top: 25px;}
