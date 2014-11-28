@@ -331,6 +331,20 @@ $(function(){
 
   </div>
   
+<script>
+      $(function() {
+        $('html').contextPopup({
+          title: 'Options',
+          items: [
+            {label:'Refresh',     icon:'icons/refresh.png',             action:function() { location.reload() } },
+            null, // divider
+            {label:'About',       icon:'icons/about.png',           action:function() { alert('WebOs is a web based desktop environment system designed by\n Parth Shah\n Chirag Vidja\n Janvi Patel') } },
+            null, // divider
+            {label:'Copyright 2014 WebOs',      icon:'icons/copy.png',                    action:function() { alert('clicked 8') } }
+          ]
+        });
+      });
+    </script>
 <?php
 $q="select * from icons where user_id=".$session_user_id;
 //echo $q;

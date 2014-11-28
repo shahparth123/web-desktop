@@ -12,6 +12,10 @@
 		  <script type="text/javascript" src="js/jquery.dialogextend.js"></script>
  <script src="js/jquery.ui.touch-punch.min.js"></script>
 
+<script src="js/jquery.contextmenu.js"></script>
+    <link rel="stylesheet" href="css/jquery.contextmenu.css">
+    
+ 
 		<style type="text/css">
 		*,
 *:after,
