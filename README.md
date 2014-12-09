@@ -4,8 +4,8 @@ It is web based version of desktop environment like GNOME or KDE. It will have b
 It is  fully written in php.
 
 It is developed by:-
-Parth Shah
-Chirag Vidja
+Parth Shah,
+Chirag Vidja,
 Janvi Patel
  
 You can download our project from http://github.com/shahparth123/web-desktop
