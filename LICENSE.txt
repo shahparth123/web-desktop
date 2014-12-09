@@ -1,0 +1,30 @@
+COPYRIGHT NOTICE
+================
+Web-Desktop and all bundled original code...
+
+    Copyright 2014 Parth Shah,Chirag Vidja,Janvi Patel
+
+Web Desktop is dual-licensed:  AGPLv3 or Commercial Licensing.
+
+Unless you have been granted a license from one of the author, web desktop and all
+bundled software--except where noted--is licensed under the GNU Affero General
+Public License version 3.  A copy of the AGPLv3 license should have been
+included with the webesktop as AGPLv3.txt.  If not, a copy may be
+obtained by visiting:
+
+    http://www.gnu.org/licenses/agpl.html
+
+If the terms of the AGPLv3 license do not suit your needs, a proprietary
+license may be purchased from author.
+
+Included 3rd party items and their licenses
+-------------------------------------------
+
+Specific files
+^^^^^^^^^^^^^^
+2048, AdminLTE and Responsive filemanager licensing information is given in their respective folder
+Code of Gateone terminal emulator can be downloaded from https://github.com/liftoff/GateOne/ according to its license.
+
+NOTICE OF ATTRIBUTION IN GOOD FAITH
+-----------------------------------
+If we failed to attribute or state the license of something included with Web Desktop please let us know so it can be corrected.
