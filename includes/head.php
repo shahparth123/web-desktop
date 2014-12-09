@@ -1,4 +1,11 @@
 <head>
+  <meta itemprop="image" content="/images/ic_launcher.png">
+	<meta name="mobile-web-app-capable" content="yes">
+	<link rel="manifest" href="manifest.json">
+<link rel="icon" href="launcher_ic.png">
+<link rel="apple-touch-icon" href="launcher_ic.png">
+<link rel="apple-touch-icon-precomposed" href="launcher_ic.png">
+    <link rel="icon" type="image/x-icon" href="logo.ico">
 
 		<?php
 		if(logged_in()==true)

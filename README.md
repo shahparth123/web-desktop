@@ -9,3 +9,5 @@ Chirag Vidja,
 Janvi Patel
  
 You can download our project from http://github.com/shahparth123/web-desktop
+
+for more detail contact us at parth@parthhosting.com

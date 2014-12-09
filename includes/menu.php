@@ -259,7 +259,7 @@ $(function(){
     dialogExtendOptions.icons['close']='ui-icon-circle-close';
   
     // open dialog
-    last = $("<div scrolling='no' style='padding:0px;margin:0px;background-color:#EEE;'><iframe src='2.php' seamless scrolling='no' style='position: absolute; height: 100%;width: 100%;padding:0;margin:0;'  > </iframe></div><a href='https://<?php echo $host;?>' target=_blank>click here if not loaded</a>").dialog(dialogOptions).dialogExtend(dialogExtendOptions);
+    last = $("<div scrolling='no' style='padding:0px;margin:0px;background-color:#EEE;'><iframe src='2.php' seamless scrolling='no' style='position: absolute; height: 100%;width: 100%;padding:0;margin:0;'  > </iframe></div>").dialog(dialogOptions).dialogExtend(dialogExtendOptions);
   });
  
 });
@@ -340,7 +340,7 @@ $(function(){
             null, // divider
             {label:'About',       icon:'icons/about.png',           action:function() { alert('WebOs is a web based desktop environment system designed by\n Parth Shah\n Chirag Vidja\n Janvi Patel') } },
             null, // divider
-            {label:'Copyright 2014 WebOs',      icon:'icons/copy.png',                    action:function() { alert('clicked 8') } }
+            {label:'Copyright 2014 WebOs',      icon:'icons/copy.png',                    action:function() { alert('See github.com/shahparth123 for more information') } }
           ]
         });
       });
@@ -371,9 +371,9 @@ while($row1=mysql_fetch_array($r1))
   $(function() {
     $( ".desktopicon" ).draggable();
   });
-  $(function() {
+  /*$(function() {
     $( ".desktopicon" ).resizable();
-  });
+  });*/
   </script>
 
 <?php
