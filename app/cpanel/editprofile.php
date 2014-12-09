@@ -1,37 +1,24 @@
-<?php 
-	//session_start();
-	include '../../core/init.php';
-	protect_page();
-	if(empty($_POST) === false)
-	{
-		$required_fields=array('first_name', 'email');
-		//echo '<pre>',print_r($_POST,true) ,'</pre>';
-		foreach($_POST as $key=>$value)
-		{
-			if(empty($value) && in_array($key,$required_fields) === true)
-			{
-				$errors[]='fields marked with * are required';
-				break 1;
-			}
-	
-		}
-		if(empty($errors)=== true)
-		{
-			if(filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)===false)
-			{
-				$errors[]='Enter valid email adress.';
-			}
-			elseif(email_ex($_POST['email'])===true && $user_data['email']!==$_POST['email'])
-			{
-				$errors[]='email \'' . $_POST['email'] . '\' is already in use.'; 
-			}
-		}
-	//print_r($errors);
-	
-	}
-	
-	$img=mysql_result(mysql_query("select `image` from profile where user_id=".$session_user_id),0);
+<?php
+include '../../core/init.php';
+protect_page();
+if (empty($_POST) === false) {
+    $required_fields = array('first_name', 'email');
+    foreach ($_POST as $key => $value) {
+        if (empty($value) && in_array($key, $required_fields) === true) {
+            $errors[] = 'fields marked with * are required';
+            break 1;
+        }
+    }
+    if (empty($errors) === true) {
+        if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
+            $errors[] = 'Enter valid email adress.';
+        } elseif (email_ex($_POST['email']) === true && $user_data['email'] !== $_POST['email']) {
+            $errors[] = 'email \'' . $_POST['email'] . '\' is already in use.';
+        }
+    }
+}
 
+$img = mysql_result(mysql_query("select `image` from profile where user_id=" . $session_user_id), 0);
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,16 +43,16 @@
         <!-- Theme style -->
         <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
-	
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-		
-		
-		 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
@@ -95,15 +82,15 @@
 
         <!-- AdminLTE for demo purposes -->
         <script src="js/AdminLTE/demo.js" type="text/javascript"></script>
-		
-					<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
-		<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" media="screen" />
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-		
-		
-		
-		
+        <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" media="screen" />
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+
+
     </head>
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
@@ -127,14 +114,14 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span><?php echo $user_data['first_name']." ".$user_data['last_name'];?><i class="caret"></i></span>
+                                <span><?php echo $user_data['first_name'] . " " . $user_data['last_name']; ?><i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
-                                    <img src="<?php echo $img;?>" class="img-circle" alt="User Image" />
+                                    <img src="<?php echo $img; ?>" class="img-circle" alt="User Image" />
                                     <p>
-                                        <?php echo $user_data['first_name']." ".$user_data['last_name'];?>
+<?php echo $user_data['first_name'] . " " . $user_data['last_name']; ?>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -161,15 +148,15 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<?php echo $img;?>" class="img-circle" alt="User Image" />
+                            <img src="<?php echo $img; ?>" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p>Hello, <?php echo $user_data['first_name'];?></p>
+                            <p>Hello, <?php echo $user_data['first_name']; ?></p>
 
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
-                    
+
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
@@ -177,7 +164,7 @@
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
-						<li>
+                        <li>
                             <a href="changewallpaper.php">
                                 <i class="fa fa-picture-o"></i> <span>Change Wallpaper</span>
                             </a>
@@ -191,24 +178,23 @@
                             <a href="addicon.php">
                                 <i class="fa fa-bar-chart-o"></i>
                                 <span>Add Icon</span>
-                           <!--     <i class="fa fa-angle-left pull-right"></i>-->
                             </a>
-                         
+
                         </li>
-						<li>
+                        <li>
                             <a href="removeicon.php">
                                 <i class="fa fa-bar-chart-o"></i>
                                 <span>Remove Icon</span>
                            <!--     <i class="fa fa-angle-left pull-right"></i>-->
                             </a>
-                            </li>
+                        </li>
                         <li>
                             <a href="addapp.php">
                                 <i class="fa fa-laptop"></i>
                                 <span>Add Apps</span>
                             </a>
-                      </li>
-                   </ul>
+                        </li>
+                    </ul>
                 </section>
                 <!-- /.sidebar -->
             </aside>
@@ -230,7 +216,7 @@
                 <!-- Main content -->
                 <section class="content">
 
-                    
+
                     <!-- Main row -->
                     <div class="row">
                         <!-- Left col -->
@@ -238,7 +224,7 @@
 
 
 
-                            
+
                             <!-- TO DO List -->
                             <div class="box box-primary">
                                 <div class="box-header">
@@ -246,69 +232,60 @@
                                 </div><!-- /.box-header -->
                                 <!-- form start -->
 <?php
-								if(isset($_GET['success'])===true && empty($_GET['success'])===true)
-	{
-		?>
-		<div class="alert alert-success alert-dismissable">
+if (isset($_GET['success']) === true && empty($_GET['success']) === true) {
+    ?>
+                                    <div class="alert alert-success alert-dismissable">
                                         <i class="fa fa-check"></i>
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                         <b>Details Changed Successfully</b>
                                     </div>
 
-	
-		<?php
-		}
-	else{
-	if(empty($_POST)===false && empty($errors) === true)
-	{
-		//updare user detail
-		$update_data=array(
-			'first_name' => $_POST['first_name'],
-			'last_name'	 => $_POST['last_name'],
-			'email' => $_POST['email'],
-		);
-		//print_r($update_data);
-		update_user($session_user_id,$update_data);
-		header('Location: editprofile.php?success');
-		exit();
-	}
-	else if(empty($errors) === false)
-		{
-			?><div class="alert alert-danger alert-dismissable">
-                                        <i class="fa fa-check"></i>
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <b><?php echo output_errors($errors); ?></b>
-                                    </div> 
-									
-									<?php
-									
-		}
 
-}
-?>	
-					
-									
-									
-								<form role="form" method="POST" action="">
-								   <div class="box-body">
-									
-                                       
-										<div class="form-group">
+                                    <?php
+                                } else {
+                                    if (empty($_POST) === false && empty($errors) === true) {
+                                        $update_data = array(
+                                            'first_name' => $_POST['first_name'],
+                                            'last_name' => $_POST['last_name'],
+                                            'email' => $_POST['email'],
+                                        );
+                                        update_user($session_user_id, $update_data);
+                                        header('Location: editprofile.php?success');
+                                        exit();
+                                    } else if (empty($errors) === false) {
+                                        ?><div class="alert alert-danger alert-dismissable">
+                                            <i class="fa fa-check"></i>
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                            <b><?php echo output_errors($errors); ?></b>
+                                        </div> 
+
+                                        <?php
+                                    }
+                                }
+                                ?>	
+
+
+
+                                <form role="form" method="POST" action="">
+                                    <div class="box-body">
+
+
+                                        <div class="form-group">
                                             <label for="first_name">First Name</label>
-                                            				<input type="text" name="first_name" value="<?php echo $user_data['first_name'];?>" class="form-control">
+                                            <input type="text" name="first_name" value="<?php echo $user_data['first_name']; ?>" class="form-control">
 
                                         </div>
-										<div class="form-group">
+                                        <div class="form-group">
                                             <label for="last_name">Last Name</label>
-                                            				<input type="text" name="last_name" value="<?php echo $user_data['last_name'];?>" class="form-control">
+                                            <input type="text" name="last_name" value="<?php echo $user_data['last_name']; ?>" class="form-control">
 
                                         </div>
-										<div class="form-group">
+                                        <div class="form-group">
                                             <label for="email">E-Mail</label>
-                                            				<input type="text" name="email" value="<?php echo $user_data['email'];?>" class="form-control">
+                                            <input type="text" name="email" value="<?php echo $user_data['email']; ?>" class="form-control">
 
                                         </div>
-                                        
+
                                     </div><!-- /.box-body -->
 
                                     <div class="box-footer">
@@ -327,5 +304,5 @@
 
 
 
-       </body>
+    </body>
 </html>

@@ -1,66 +1,96 @@
-<?php require_once('../core/init.php'); 
-$flag=0;
-if(isset($_FILES["zip_file"]["name"])==true)
-{
-	function rmdir_recursive($dir) {
-    foreach(scandir($dir) as $file) {
-       if ('.' === $file || '..' === $file) continue;
-       if (is_dir("$dir/$file")) rmdir_recursive("$dir/$file");
-       else unlink("$dir/$file");
-   }
-   
-   rmdir($dir);
-}
-if($_FILES["zip_file"]["name"]) {
-	$filename = $_FILES["zip_file"]["name"];
-	$source = $_FILES["zip_file"]["tmp_name"];
-	$type = $_FILES["zip_file"]["type"];
-	
-	$name = explode(".", $filename);
-	$accepted_types = array('application/zip', 'application/x-zip-compressed', 'multipart/x-zip', 'application/x-compressed');
-	foreach($accepted_types as $mime_type) {
-		if($mime_type == $type) {
-			$okay = true;
-			break;
-		} 
-	}
-	
-	$continue = strtolower($name[1]) == 'zip' ? true : false;
-	if(!$continue) {
-		$message = "The file you are trying to upload is not a .zip file. Please try again.";
-	}
+<?php
+/* It is web based version of desktop environment like GNOME or KDE. 
+ * It will have basic functionalities of any linux system like text editor, file-manager, terminal, calculator ,web based office suite etc. 
+ * It will also able to run any command line programs like gcc, python, bc, vi,mysql etc.
+ * It also have control panel for personalize user experience like changing wallpaper, manage user accounts.
+ * It is also mobile enable so any one can easily use it from any remote place over the internet.
+ * It is  fully written in php.
+ * It is developed by:-
+ * 
+ * Parth Shah,
+ * Chirag Vidja,
+ * Janvi Patel
+ *  
+ * You can download our project from http://github.com/shahparth123/web-desktop
+ * for more detail contact us at parth@parthhosting.com
+ * 
+ * COPYRIGHT NOTICE
+ * ================
+ * Web Desktop and all related original code...
+ * Copyright 2014 Parth Shah,Chirag Vidja,Janvi Patel
+ * 
+ *  
+ */
+?>
+<?php
+require_once('../core/init.php');
+$flag = 0;
+if (isset($_FILES["zip_file"]["name"]) == true) {
 
-  /* PHP current path */
-  $path = dirname(__FILE__).'/';  // absolute path to the directory where zipper.php is in
-  $filenoext = basename ($filename, '.zip');  // absolute path to the directory where zipper.php is in (lowercase)
-  $filenoext = basename ($filenoext, '.ZIP');  // absolute path to the directory where zipper.php is in (when uppercase)
-    
-  $targetdir = $path . $filenoext; // target directory
-  $targetzip = $path . $filename; // target zip file
-  
-  /* create directory if not exists', otherwise overwrite */
-  /* target directory is same as filename without extension */
-  
-  if (is_dir($targetdir))  rmdir_recursive ( $targetdir);
- 
-     
-  mkdir($targetdir, 0777);
-  
-  
-  /* here it is really happening */
-	
-	if(move_uploaded_file($source, $targetzip)) {
-		$zip = new ZipArchive();
-		$x = $zip->open($targetzip);  // open the zip file to extract
-		if ($x === true) {
-			$zip->extractTo($targetdir); // place in the directory with same name  
-			$zip->close();
-	
-			unlink($targetzip);
-		}
-		
-		$message = "Your .zip file was uploaded and unpacked.".$filenoext." installed";
-		mysql_query("INSERT INTO `apps` (`id`, `name`, `image`, `css_id`, `javascript`, `url`, `new`) VALUES (NULL, '".$filenoext."', '/app/".$filenoext."/logo.png', '".$filenoext."', '$(function(){
+    function rmdir_recursive($dir) {
+        foreach (scandir($dir) as $file) {
+            if ('.' === $file || '..' === $file)
+                continue;
+            if (is_dir("$dir/$file"))
+                rmdir_recursive("$dir/$file");
+            else
+                unlink("$dir/$file");
+        }
+
+        rmdir($dir);
+    }
+
+    if ($_FILES["zip_file"]["name"]) {
+        $filename = $_FILES["zip_file"]["name"];
+        $source = $_FILES["zip_file"]["tmp_name"];
+        $type = $_FILES["zip_file"]["type"];
+
+        $name = explode(".", $filename);
+        $accepted_types = array('application/zip', 'application/x-zip-compressed', 'multipart/x-zip', 'application/x-compressed');
+        foreach ($accepted_types as $mime_type) {
+            if ($mime_type == $type) {
+                $okay = true;
+                break;
+            }
+        }
+
+        $continue = strtolower($name[1]) == 'zip' ? true : false;
+        if (!$continue) {
+            $message = "The file you are trying to upload is not a .zip file. Please try again.";
+        }
+
+        /* PHP current path */
+        $path = dirname(__FILE__) . '/';  // absolute path to the directory where zipper.php is in
+        $filenoext = basename($filename, '.zip');  // absolute path to the directory where zipper.php is in (lowercase)
+        $filenoext = basename($filenoext, '.ZIP');  // absolute path to the directory where zipper.php is in (when uppercase)
+
+        $targetdir = $path . $filenoext; // target directory
+        $targetzip = $path . $filename; // target zip file
+
+        /* create directory if not exists', otherwise overwrite */
+        /* target directory is same as filename without extension */
+
+        if (is_dir($targetdir))
+            rmdir_recursive($targetdir);
+
+
+        mkdir($targetdir, 0777);
+
+
+        /* here it is really happening */
+
+        if (move_uploaded_file($source, $targetzip)) {
+            $zip = new ZipArchive();
+            $x = $zip->open($targetzip);  // open the zip file to extract
+            if ($x === true) {
+                $zip->extractTo($targetdir); // place in the directory with same name  
+                $zip->close();
+
+                unlink($targetzip);
+            }
+
+            $message = "Your .zip file was uploaded and unpacked." . $filenoext . " installed";
+            mysql_query("INSERT INTO `apps` (`id`, `name`, `image`, `css_id`, `javascript`, `url`, `new`) VALUES (NULL, '" . $filenoext . "', '/app/" . $filenoext . "/logo.png', '" . $filenoext . "', '$(function(){
   var last;
 
   // preview icon
@@ -73,10 +103,10 @@ if($_FILES["zip_file"]["name"]) {
 
 
   // click to open dialog
-  $(\"#".$filenoext."\").click(function(){
+  $(\"#" . $filenoext . "\").click(function(){
     //dialog options
     var dialogOptions = {
-      \"title\" : \"".$filenoext."\",
+      \"title\" : \"" . $filenoext . "\",
       \"width\" : \"330\",
       \"height\" : \"500\",
       \"modal\" : false,
@@ -104,24 +134,21 @@ if($_FILES["zip_file"]["name"]) {
     dialogExtendOptions.icons[''close'']=''ui-icon-circle-close'';
   
     // open dialog
-    last = $(\"<div scrolling=''no'' style=''padding:0px;margin:0px;background-color:#EEE;''><iframe src=''app/".$filenoext."/index.php'' seamless scrolling=''no'' style=''position: absolute; height: 100%;width: 100%;padding:0;margin:0;''  > </iframe></div>\").dialog(dialogOptions).dialogExtend(dialogExtendOptions);
+    last = $(\"<div scrolling=''no'' style=''padding:0px;margin:0px;background-color:#EEE;''><iframe src=''app/" . $filenoext . "/index.php'' seamless scrolling=''no'' style=''position: absolute; height: 100%;width: 100%;padding:0;margin:0;''  > </iframe></div>\").dialog(dialogOptions).dialogExtend(dialogExtendOptions);
   });
  
 });', '#', '0');
 
 ");
-		$flag=1;
-	} else {	
-		$message = "There was a problem with the upload. Please try again.";
-	}
+            $flag = 1;
+        } else {
+            $message = "There was a problem with the upload. Please try again.";
+        }
+    }
 }
-	
-}
 
-$img=mysql_result(mysql_query("select `image` from profile where user_id=".$session_user_id),0);
-	protect_page();
-
-
+$img = mysql_result(mysql_query("select `image` from profile where user_id=" . $session_user_id), 0);
+protect_page();
 ?>
 <!DOCTYPE html>
 <html>
@@ -146,16 +173,16 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
         <!-- Theme style -->
         <link href="cpanel/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
-	
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-		
-		
-		 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
@@ -185,15 +212,15 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
 
         <!-- AdminLTE for demo purposes -->
         <script src="cpanel/js/AdminLTE/demo.js" type="text/javascript"></script>
-		
-					<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
-		<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" media="screen" />
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-		
-		
-		
-		
+        <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" media="screen" />
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+
+
     </head>
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
@@ -217,14 +244,14 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span><?php echo $user_data['first_name']." ".$user_data['last_name'];?><i class="caret"></i></span>
+                                <span><?php echo $user_data['first_name'] . " " . $user_data['last_name']; ?><i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
-                                    <img src="<?php echo $img;?>" class="img-circle" alt="User Image" />
+                                    <img src="<?php echo $img; ?>" class="img-circle" alt="User Image" />
                                     <p>
-                                        <?php echo $user_data['first_name']." ".$user_data['last_name'];?>
+<?php echo $user_data['first_name'] . " " . $user_data['last_name']; ?>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -251,15 +278,15 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<?php echo $img;?>" class="img-circle" alt="User Image" />
+                            <img src="<?php echo $img; ?>" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p>Hello, <?php echo $user_data['first_name'];?></p>
+                            <p>Hello, <?php echo $user_data['first_name']; ?></p>
 
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
-                
+
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
@@ -267,7 +294,7 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
-						<li>
+                        <li>
                             <a href="cpanel/changewallpaper.php">
                                 <i class="fa fa-picture-o"></i> <span>Change Wallpaper</span>
                             </a>
@@ -281,28 +308,22 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                             <a href="cpanel/addicon.php">
                                 <i class="fa fa-bar-chart-o"></i>
                                 <span>Add Icon</span>
-                           <!--     <i class="fa fa-angle-left pull-right"></i>-->
                             </a>
-                         <!--   <ul class="treeview-menu">
-                                <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i> Morris</a></li>
-                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
-                                <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
-                            </ul>
-                 -->       </li>
-				 							<li>
+                                  </li>
+                        <li>
                             <a href="cpanel/removeicon.php">
                                 <i class="fa fa-bar-chart-o"></i>
                                 <span>Remove Icon</span>
                            <!--     <i class="fa fa-angle-left pull-right"></i>-->
                             </a>
-                            </li>
+                        </li>
                         <li>
                             <a href="cpanel/addapp.php">
                                 <i class="fa fa-laptop"></i>
                                 <span>Add Apps</span>
                             </a>
-                      </li>
-                   </ul>
+                        </li>
+                    </ul>
                 </section>
                 <!-- /.sidebar -->
             </aside>
@@ -324,7 +345,7 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                 <!-- Main content -->
                 <section class="content">
 
-                    
+
                     <!-- Main row -->
                     <div class="row">
                         <!-- Left col -->
@@ -332,7 +353,7 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
 
 
 
-                            
+
                             <!-- TO DO List -->
                             <div class="box box-primary">
                                 <div class="box-header">
@@ -340,41 +361,40 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                                 </div><!-- /.box-header -->
                                 <!-- form start -->
                                 <?php
-if($flag==1)
-{
-?>
-	<div class="alert alert-success alert-dismissable">
+                                if ($flag == 1) {
+                                    ?>
+                                    <div class="alert alert-success alert-dismissable">
                                         <i class="fa fa-check"></i>
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                         <b>App installed</b>
                                     </div>
-	<?php
-}
-?>
-					
-									
-									
-								<form role="form" enctype="multipart/form-data" method="post" action="">
-								   <div class="box-body">
-									
+                                    <?php
+                                }
+                                ?>
+
+
+
+                                <form role="form" enctype="multipart/form-data" method="post" action="">
+                                    <div class="box-body">
+
                                         <div class="form-group">
-                                    
-										<label for="zip_file">Choose file</label>
-										
-										<div class="input-group input-group-sm">
-										<input type="file" name="zip_file" />
-										</span>
-                                    </div>
-										
-										
-										
-	    
-	    
-	<br/>
-			
+
+                                            <label for="zip_file">Choose file</label>
+
+                                            <div class="input-group input-group-sm">
+                                                <input type="file" name="zip_file" />
+                                                </span>
+                                            </div>
+
+
+
+
+
+                                            <br/>
+
                                         </div>
-										
-                                        
+
+
                                     </div><!-- /.box-body -->
 
                                     <div class="box-footer">
@@ -393,5 +413,5 @@ if($flag==1)
 
 
 
-       </body>
+    </body>
 </html>

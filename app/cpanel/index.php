@@ -1,7 +1,30 @@
-<?php require_once('../../core/init.php'); 
-$img=mysql_result(mysql_query("select `image` from profile where user_id=".$session_user_id),0);
-
-
+<?php
+/* It is web based version of desktop environment like GNOME or KDE. 
+ * It will have basic functionalities of any linux system like text editor, file-manager, terminal, calculator ,web based office suite etc. 
+ * It will also able to run any command line programs like gcc, python, bc, vi,mysql etc.
+ * It also have control panel for personalize user experience like changing wallpaper, manage user accounts.
+ * It is also mobile enable so any one can easily use it from any remote place over the internet.
+ * It is  fully written in php.
+ * It is developed by:-
+ * 
+ * Parth Shah,
+ * Chirag Vidja,
+ * Janvi Patel
+ *  
+ * You can download our project from http://github.com/shahparth123/web-desktop
+ * for more detail contact us at parth@parthhosting.com
+ * 
+ * COPYRIGHT NOTICE
+ * ================
+ * Web Desktop and all related original code...
+ * Copyright 2014 Parth Shah,Chirag Vidja,Janvi Patel
+ * 
+ *  
+ */
+?>
+<?php
+require_once('../../core/init.php');
+$img = mysql_result(mysql_query("select `image` from profile where user_id=" . $session_user_id), 0);
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,19 +74,19 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                 </a>
                 <div class="navbar-right">
                     <ul class="nav navbar-nav">
-                        
+
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span><?php echo $user_data['first_name']." ".$user_data['last_name'];?><i class="caret"></i></span>
+                                <span><?php echo $user_data['first_name'] . " " . $user_data['last_name']; ?><i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
-                                    <img src="<?php echo $img;?>" class="img-circle" alt="User Image" />
+                                    <img src="<?php echo $img; ?>" class="img-circle" alt="User Image" />
                                     <p>
-                                        <?php echo $user_data['first_name']." ".$user_data['last_name'];?>
+                                        <?php echo $user_data['first_name'] . " " . $user_data['last_name']; ?>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -90,15 +113,15 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<?php echo $img;?>" class="img-circle" alt="User Image" />
+                            <img src="<?php echo $img; ?>" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p>Hello, <?php echo $user_data['first_name'];?></p>
+                            <p>Hello, <?php echo $user_data['first_name']; ?></p>
 
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
-                   
+
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
@@ -106,7 +129,7 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
-						<li>
+                        <li>
                             <a href="changewallpaper.php">
                                 <i class="fa fa-picture-o"></i> <span>Change Wallpaper</span>
                             </a>
@@ -122,22 +145,22 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                                 <span>Add Icon</span>
                            <!--     <i class="fa fa-angle-left pull-right"></i>-->
                             </a>
-                            </li>
-							<li>
+                        </li>
+                        <li>
                             <a href="removeicon.php">
                                 <i class="fa fa-bar-chart-o"></i>
                                 <span>Remove Icon</span>
                            <!--     <i class="fa fa-angle-left pull-right"></i>-->
                             </a>
-                            </li>
+                        </li>
                         <li>
                             <a href="addapp.php">
                                 <i class="fa fa-laptop"></i>
                                 <span>Add Apps</span>
-                             
+
                             </a>
-                  </li>
-                      </ul>
+                        </li>
+                    </ul>
                 </section>
                 <!-- /.sidebar -->
             </aside>
@@ -184,34 +207,36 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                             <!-- small box -->
                             <div class="small-box bg-green">
                                 <div class="inner">
-								<?php
-								if(has_access($session_user_id,1)===true){
-								?>                                   
-								   <h3>
-                                        Install
-                                    </h3>
-                                    <p>
-                                        App
-                                    </p>
-									<?php
-									}
-									else
-									{
-									?>
-								<h3>
-                                        Change
-                                    </h3>
-                                    <p>
-                                        Password
-                                    </p>
-									<?php
-									}
-									?>
+                                    <?php
+                                    if (has_access($session_user_id, 1) === true) {
+                                        ?>                                   
+                                        <h3>
+                                            Install
+                                        </h3>
+                                        <p>
+                                            App
+                                        </p>
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <h3>
+                                            Change
+                                        </h3>
+                                        <p>
+                                            Password
+                                        </p>
+    <?php
+}
+?>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-stats-bars"></i>
                                 </div>
-                                <a href="<?php if(has_access($session_user_id,1)===true){echo "../index.php";}else{echo "changepassword.php";}?>" class="small-box-footer">
+                                <a href="<?php if (has_access($session_user_id, 1) === true) {
+    echo "../index.php";
+} else {
+    echo "changepassword.php";
+} ?>" class="small-box-footer">
                                     More info <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
@@ -221,35 +246,35 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                             <div class="small-box bg-yellow">
                                 <div class="inner">
                                     <?php
-									if(has_access($session_user_id,1)===true)
-									{
-									?>
-									<h3>
-                                        Manage
-                                    </h3>
-                                    <p>
-                                        User
-                                    </p>
-									<?php
-									
-									}
-									else
-									{
-									?>
-									<h3>
-                                        Add
-                                    </h3>
-                                    <p>
-                                        Icon
-                                    </p>
-									<?php
-									}
-									?>
+                                    if (has_access($session_user_id, 1) === true) {
+                                        ?>
+                                        <h3>
+                                            Manage
+                                        </h3>
+                                        <p>
+                                            User
+                                        </p>
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <h3>
+                                            Add
+                                        </h3>
+                                        <p>
+                                            Icon
+                                        </p>
+    <?php
+}
+?>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-person-add"></i>
                                 </div>
-                                <a href="<?php if(has_access($session_user_id,1)===true){echo "manageuser.php";}else{echo "addicon.php";}?>" class="small-box-footer">
+                                <a href="<?php if (has_access($session_user_id, 1) === true) {
+    echo "manageuser.php";
+} else {
+    echo "addicon.php";
+} ?>" class="small-box-footer">
                                     More info <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
@@ -278,11 +303,11 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                     <!-- Main row -->
                     <div class="row">
                         <!-- Left col -->
-                        
+
                         <!-- right col (We are only adding the ID to make the widgets sortable)-->
                         <section class="col-lg-5 connectedSortable"> 
 
-                            
+
                             <!-- Calendar -->
                             <div class="box box-solid bg-green-gradient">
                                 <div class="box-header">
@@ -308,50 +333,50 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                                     <!--The calendar -->
                                     <div id="calendar" style="width: 100%"></div>
                                 </div><!-- /.box-body -->  
-                                    </div><!-- /.row -->                                                                        
-                                </div>
-                            </div><!-- /.box -->                            
+                            </div><!-- /.row -->                                                                        
+                    </div>
+                    </div><!-- /.box -->                            
 
-                        </section><!-- right col -->
-                    </div><!-- /.row (main row) -->
+                </section><!-- right col -->
+        </div><!-- /.row (main row) -->
 
-                </section><!-- /.content -->
-            </aside><!-- /.right-side -->
-        </div><!-- ./wrapper -->
+    </section><!-- /.content -->
+</aside><!-- /.right-side -->
+</div><!-- ./wrapper -->
 
-        <!-- add new calendar event modal -->
+<!-- add new calendar event modal -->
 
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js" type="text/javascript"></script>
-        <!-- Morris.js charts -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-        <script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>
-        <!-- Sparkline -->
-        <script src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
-        <!-- jvectormap -->
-        <script src="js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
-        <script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
-        <!-- jQuery Knob Chart -->
-        <script src="js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
-        <!-- daterangepicker -->
-        <script src="js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
-        <!-- datepicker -->
-        <script src="js/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
-        <!-- Bootstrap WYSIHTML5 -->
-        <script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
-        <!-- iCheck -->
-        <script src="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js" type="text/javascript"></script>
+<!-- Morris.js charts -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>
+<!-- Sparkline -->
+<script src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+<!-- jvectormap -->
+<script src="js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
+<script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+<!-- jQuery Knob Chart -->
+<script src="js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
+<!-- daterangepicker -->
+<script src="js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<!-- datepicker -->
+<script src="js/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+<!-- iCheck -->
+<script src="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
 
-        <!-- AdminLTE App -->
-        <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+<!-- AdminLTE App -->
+<script src="js/AdminLTE/app.js" type="text/javascript"></script>
 
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="js/AdminLTE/dashboard.js" type="text/javascript"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="js/AdminLTE/dashboard.js" type="text/javascript"></script>
 
-        <!-- AdminLTE for demo purposes -->
-        <script src="js/AdminLTE/demo.js" type="text/javascript"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="js/AdminLTE/demo.js" type="text/javascript"></script>
 
-    </body>
+</body>
 </html>

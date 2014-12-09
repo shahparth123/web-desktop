@@ -1,24 +1,45 @@
-<?php 
-require_once('../../core/init.php'); 
-	//session_start();
-	protect_page();
-	
-	if(empty($_POST) === false){
-	if(isset($_POST['id'])==true && $_POST['id']!="")
-{
-	$id= san($_POST['id']);
-	$q="INSERT INTO icons ( user_id,name,image,css_id,javascript,url,new ) SELECT $session_user_id,name,image,css_id,javascript,url,new FROM apps where id=$id";
-	mysql_query($q) or die("error");
-	header("location:addapp.php?success");
+<?php
+/* It is web based version of desktop environment like GNOME or KDE. 
+ * It will have basic functionalities of any linux system like text editor, file-manager, terminal, calculator ,web based office suite etc. 
+ * It will also able to run any command line programs like gcc, python, bc, vi,mysql etc.
+ * It also have control panel for personalize user experience like changing wallpaper, manage user accounts.
+ * It is also mobile enable so any one can easily use it from any remote place over the internet.
+ * It is  fully written in php.
+ * It is developed by:-
+ * 
+ * Parth Shah,
+ * Chirag Vidja,
+ * Janvi Patel
+ *  
+ * You can download our project from http://github.com/shahparth123/web-desktop
+ * for more detail contact us at parth@parthhosting.com
+ * 
+ * COPYRIGHT NOTICE
+ * ================
+ * Web Desktop and all related original code...
+ * Copyright 2014 Parth Shah,Chirag Vidja,Janvi Patel
+ * 
+ *  
+ */
+?>
+<?php
+require_once('../../core/init.php');
+//session_start();
+protect_page();
+
+if (empty($_POST) === false) {
+    if (isset($_POST['id']) == true && $_POST['id'] != "") {
+        $id = san($_POST['id']);
+        $q = "INSERT INTO icons ( user_id,name,image,css_id,javascript,url,new ) SELECT $session_user_id,name,image,css_id,javascript,url,new FROM apps where id=$id";
+        mysql_query($q) or die("error");
+        header("location:addapp.php?success");
+    }
 }
-	//print_r($errors);
-	}
-	
-	
 
 
-$img=mysql_result(mysql_query("select `image` from profile where user_id=".$session_user_id),0);
 
+
+$img = mysql_result(mysql_query("select `image` from profile where user_id=" . $session_user_id), 0);
 ?>
 
 <!DOCTYPE html>
@@ -44,16 +65,16 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
         <!-- Theme style -->
         <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
-	
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-		
-		
-		 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
@@ -83,15 +104,15 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
 
         <!-- AdminLTE for demo purposes -->
         <script src="js/AdminLTE/demo.js" type="text/javascript"></script>
-		
-					<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
-		<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" media="screen" />
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-		
-		
-		
-		
+        <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" media="screen" />
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+
+
     </head>
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
@@ -115,14 +136,14 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span><?php echo $user_data['first_name']." ".$user_data['last_name'];?><i class="caret"></i></span>
+                                <span><?php echo $user_data['first_name'] . " " . $user_data['last_name']; ?><i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
-                                    <img src="<?php echo $img;?>" class="img-circle" alt="User Image" />
+                                    <img src="<?php echo $img; ?>" class="img-circle" alt="User Image" />
                                     <p>
-                                        <?php echo $user_data['first_name']." ".$user_data['last_name'];?>
+<?php echo $user_data['first_name'] . " " . $user_data['last_name']; ?>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -149,15 +170,15 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<?php echo $img;?>" class="img-circle" alt="User Image" />
+                            <img src="<?php echo $img; ?>" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p>Hello, <?php echo $user_data['first_name'];?></p>
+                            <p>Hello, <?php echo $user_data['first_name']; ?></p>
 
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
-                    
+
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
@@ -165,7 +186,7 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
-						<li>
+                        <li>
                             <a href="changewallpaper.php">
                                 <i class="fa fa-picture-o"></i> <span>Change Wallpaper</span>
                             </a>
@@ -181,22 +202,22 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                                 <span>Add Icon</span>
                            <!--     <i class="fa fa-angle-left pull-right"></i>-->
                             </a>
-                         
+
                         </li>
-													<li>
+                        <li>
                             <a href="removeicon.php">
                                 <i class="fa fa-bar-chart-o"></i>
                                 <span>Remove Icon</span>
                            <!--     <i class="fa fa-angle-left pull-right"></i>-->
                             </a>
-                            </li>
+                        </li>
                         <li>
                             <a href="addapp.php">
                                 <i class="fa fa-laptop"></i>
                                 <span>Add Apps</span>
                             </a>
-                      </li>
-                   </ul>
+                        </li>
+                    </ul>
                 </section>
                 <!-- /.sidebar -->
             </aside>
@@ -218,7 +239,7 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                 <!-- Main content -->
                 <section class="content">
 
-                    
+
                     <!-- Main row -->
                     <div class="row">
                         <!-- Left col -->
@@ -226,7 +247,7 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
 
 
 
-                            
+
                             <!-- TO DO List -->
                             <div class="box box-primary">
                                 <div class="box-header">
@@ -234,59 +255,53 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
                                 </div><!-- /.box-header -->
                                 <!-- form start -->
 <?php
-								if(isset($_GET['success'])===true && empty($_GET['success'])===true)
-	{
-		?>
-		<div class="alert alert-success alert-dismissable">
+if (isset($_GET['success']) === true && empty($_GET['success']) === true) {
+    ?>
+                                    <div class="alert alert-success alert-dismissable">
                                         <i class="fa fa-check"></i>
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                         <b>App Added Successfully</b>
                                     </div>
 
-	
-		<?php
-		}
-	else{
-	
-	if(empty($errors) === false)
-		{
-			?><div class="alert alert-danger alert-dismissable">
-                                        <i class="fa fa-check"></i>
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <b><?php echo output_errors($errors); ?></b>
-                                    </div> 
-									
-									<?php
-									
-		}
 
+    <?php
+} else {
+
+    if (empty($errors) === false) {
+        ?><div class="alert alert-danger alert-dismissable">
+                                            <i class="fa fa-check"></i>
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                            <b><?php echo output_errors($errors); ?></b>
+                                        </div> 
+
+        <?php
+    }
 }
 ?>	
-					
-									
-									
-								<form role="form" method="POST" action="">
-								   <div class="box-body">
-									
-                                       
-										<div class="form-group">
+
+
+
+                                <form role="form" method="POST" action="">
+                                    <div class="box-body">
+
+
+                                        <div class="form-group">
                                             <label for="id">App</label>
-                                           <select name="id" id="id" class="form-control" required> 
-											<?php
-											$qwe=mysql_query("select * from apps");
-											while($row=mysql_fetch_array($qwe))
-											{
-											?>
-											
-											<option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
-											
-											<?php
-											}
-											?>
-											</select>
+                                            <select name="id" id="id" class="form-control" required> 
+<?php
+$qwe = mysql_query("select * from apps");
+while ($row = mysql_fetch_array($qwe)) {
+    ?>
+
+                                                    <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
+
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
-                                        
-                                        
+
+
                                     </div><!-- /.box-body -->
 
                                     <div class="box-footer">
@@ -305,5 +320,5 @@ $img=mysql_result(mysql_query("select `image` from profile where user_id=".$sess
 
 
 
-       </body>
+    </body>
 </html>
